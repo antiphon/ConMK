@@ -26,6 +26,7 @@ NumericMatrix local_stats(NumericMatrix x, int nrow,
     out(i,0) += MKS(i);
     for(t = 0; t < ntime; t++)  out(i,1) += x(i, t) * x(i, t);
     out(i,1) = sqrt( out(i,1) / (ntime-1.0) );
+    if(out(i,1) == 0) out(i,1) = 1.0; // in case constant series
     nei = forward_neighbour_cells(i, nrow, ncol);
     if( nei.size() ) {
         for(k = 0; k < nei.size(); k++) {
@@ -75,21 +76,24 @@ NumericMatrix mann_kendall_S_and_slope(NumericMatrix x, NumericVector time){
   int ntime = x.ncol();
   NumericMatrix out(x.nrow(), 2);
   NumericVector w( ntime * (ntime-1)/2 );
-  for(i = 0; i < x.nrow(); i++) if(!R_isnancpp(x(i,0))){
-    S = 0;
-    l = 0;
-    for(j = 0; j < (ntime-1); j++)
-      for(k = j+1; k < ntime; k++){
-        d = x(i,k) - x(i,j);
-        S += d > 0 ? 1 : d < 0 ? -1 : 0;
-        w(l) = d / ( time(k) - time(j) );
-        l++;
+  for(i = 0; i < x.nrow(); i++) {
+    if(!R_isnancpp(x(i,0))){
+      S = 0;
+      l = 0;
+      for(j = 0; j < (ntime-1); j++){
+        for(k = j+1; k < ntime; k++){
+          d = x(i,k) - x(i,j);
+          S += d > 0 ? 1 : d < 0 ? -1 : 0;
+          w(l) = d / ( time(k) - time(j) );
+          l++;
+        }
       }
       out(i,0) = S;
       out(i,1) = median(w);
-  }else {
-    out(i,0) = R_NaReal;
-    out(i,1) = R_NaReal;
+    }else {
+      out(i,0) = R_NaReal;
+      out(i,1) = R_NaReal;
+    }
   }
   return out;
 }
