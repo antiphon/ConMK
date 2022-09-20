@@ -4,8 +4,7 @@
 \alias{contextual_mann_kendall}
 \title{Contextual Mann-Kendall Trend Test}
 \usage{
-contextual_mann_kendall(x, ..., neighbourhood = 2, calc_slope = FALSE,
-  time)
+contextual_mann_kendall(x, ..., neighbourhood = 2, calc_slope = FALSE, time)
 }
 \arguments{
 \item{x}{Raster stack, each layer denoting one timestep. Equidistant steps of time 1 assumed.}

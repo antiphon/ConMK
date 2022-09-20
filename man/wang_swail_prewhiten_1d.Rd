@@ -4,8 +4,14 @@
 \alias{wang_swail_prewhiten_1d}
 \title{Prewhitening 1D}
 \usage{
-wang_swail_prewhiten_1d(x, ..., eps = 1e-04, rho_th = 0.05,
-  itmax = 20, useC = TRUE)
+wang_swail_prewhiten_1d(
+  x,
+  ...,
+  eps = 1e-04,
+  rho_th = 0.05,
+  itmax = 20,
+  useC = TRUE
+)
 }
 \arguments{
 \item{x}{either vector or matrix with c(x, time)}

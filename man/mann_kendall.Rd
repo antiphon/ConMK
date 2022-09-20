@@ -4,8 +4,7 @@
 \alias{mann_kendall}
 \title{Mann-Kendall Trend Test}
 \usage{
-mann_kendall(x, ..., est_beta = TRUE, calc_slope = est_beta,
-  check = TRUE)
+mann_kendall(x, ..., est_beta = TRUE, calc_slope = est_beta, check = TRUE)
 }
 \arguments{
 \item{x}{Time series, either a vector of values or n x 2 matrix of value,time pairs}

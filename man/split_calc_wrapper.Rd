@@ -4,8 +4,16 @@
 \alias{split_calc_wrapper}
 \title{Split-Calc-Merge Wrapper}
 \usage{
-split_calc_wrapper(x, nx, ny, buffer = c(1, 1), fun, ..., dbg = FALSE,
-  byrowcol = TRUE)
+split_calc_wrapper(
+  x,
+  nx,
+  ny,
+  buffer = c(1, 1),
+  fun,
+  ...,
+  dbg = FALSE,
+  byrowcol = TRUE
+)
 }
 \arguments{
 \item{x}{Raster stack}

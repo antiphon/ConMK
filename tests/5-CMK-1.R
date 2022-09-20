@@ -32,7 +32,6 @@ if(0) {
   e <- adjacent(r,i+1,8)[,2]-1;e <- e[e>i]
   print(c(all.equal(sort(a),sort(b)), all.equal(sort(a),sort(e))))
 }
-
 # variances and sum of covariances
 if(0){
   ss <- s - mean(s)
@@ -79,7 +78,7 @@ if(0){
 
 
 # check if the non-contextual stack version works
-if(1) {
+if(0) {
   x <- o$trend
   fun<-function(v,...) if(sum(is.na(v))>1) return(NA) else mann_kendall(v, est_beta = FALSE)$p
   t0 <- system.time(   a <- stackApply(x, 1, fun)  )
@@ -91,3 +90,11 @@ if(1) {
 
 
 }
+
+# Check cmk looks ok
+if(1) {
+  x0 <- o$trend
+  t2 <- system.time(   b <- (s <- contextual_mann_kendall(x0, neighbourhood = 2, calc_slope = TRUE))$p )
+
+}
+

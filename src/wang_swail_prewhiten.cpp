@@ -43,7 +43,7 @@ double beta_part(NumericVector x) {
   return median(X);
 }
 
-double abs(double a){
+double absd(double a){
   if( a < 0) return -a;
   return a;
 }
@@ -63,7 +63,7 @@ List c_wang_swail_prewithen_1d(NumericVector x, NumericVector t,
   double rho = 0;
   double beta = 0, beta0 = 0;
 
-  while( (abs(rho0 - rho) > eps  || abs(beta0 - beta) > eps) && it < itmax) {
+  while( (absd(rho0 - rho) > eps  || absd(beta0 - beta) > eps) && it < itmax) {
     beta0 = beta;
     rho0 = autocor_part(x, beta0);
     for(i=0; i < n-1; i++) W(i) = (x(i+1)-rho0*x(i))/(1-rho0);
